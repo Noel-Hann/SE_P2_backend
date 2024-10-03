@@ -55,4 +55,31 @@ public class WhitelistApplication {
             return "The DB is NOT working: " + e.getMessage();
         }
     }
+
+
+            //the return type is the number of rows that have been changed.
+            //This should usually be 1. If it is 0, that means that no user has
+            //been added, like if you tried to add a user who already exists.
+            //if it is a negative number, it is an error.
+            //if it is greater than 1, something is wrong with the database
+    @PostMapping("/addUser")
+    public int addUser(@RequestBody User user) {
+
+        try{
+             String query = "Insert into users (username, password) Values = ?,?)";
+
+             int rowsChanged = jdbcTemplate.update(query, user.username, user.password);
+
+
+             return rowsChanged;
+
+
+
+        } catch (Exception e) {
+            return -1;//an error code to show something didn't work
+        }
+
+    }
+
+
 }
