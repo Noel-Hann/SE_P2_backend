@@ -65,9 +65,14 @@ public class WhitelistApplication {
     @PostMapping("/addUser")
     public int addUser(@RequestBody User user) {
 
-        try{
-             String query = "Insert into users (username, password) Values = ?,?)";
+        if (user == null) {
+        System.out.println("User is null");
+        return 0;
+        }
 
+        try{
+             String query = "Insert into users (username, password) Values = (?,?)";
+()
              int rowsChanged = jdbcTemplate.update(query, user.username, user.password);
 
 
@@ -76,6 +81,7 @@ public class WhitelistApplication {
 
 
         } catch (Exception e) {
+            System.out.println("Caught an exeption: " + e);
             return -1;//an error code to show something didn't work
         }
 
