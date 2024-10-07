@@ -8,11 +8,14 @@ public class Wishlist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int wishlistNum;
+    private int id;
 
     private int userKey;
     private String name;
     private String description;
+
+    public Wishlist() {
+    }
 
     public Wishlist(int userKey, String name, String description) {
         this.userKey = userKey;
@@ -21,11 +24,11 @@ public class Wishlist {
     }
 
     public int getWishlistNum() {
-        return wishlistNum;
+        return id;
     }
 
     public void setWishlistNum(int wishlistNum) {
-        this.wishlistNum = wishlistNum;
+        this.id = wishlistNum;
     }
 
     public int getUserKey() {

@@ -16,6 +16,6 @@ public class WhitelistApplication {
 
 	@RequestMapping("/")
     String home() {
-      return "Hello World!";
+      return "We are connected!";
     }
 }

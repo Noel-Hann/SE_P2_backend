@@ -1,12 +1,11 @@
-# Use the official OpenJDK image as the base image
-FROM openjdk:17-jdk-slim
-
-# Set environment variables
-ENV JAVA_OPTS="-Xms512m -Xmx1024m"
-
-# Set the working directory inside the container
+FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package
 
-COPY target/*.jar app.jar
-
-CMD ["java", "-jar", "app.jar"]
+# Run stage
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]

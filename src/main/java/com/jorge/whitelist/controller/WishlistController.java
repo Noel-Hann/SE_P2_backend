@@ -1,6 +1,7 @@
 package com.jorge.whitelist.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,12 +30,12 @@ public class WishlistController {
         return wishlistRepository.findAll();
     }
 
-    @GetMapping("get/{id}")
-    public Wishlist getSingleWishlist(@PathVariable("id") Integer id){
-        return wishlistRepository.findById(id).get();
+    @GetMapping("get-users/{userKey}")
+    public List< Wishlist> getUserWishlist(@PathVariable("userKey") Integer userKey){
+        return wishlistRepository.findByUserKey(userKey);
     }
 
-    @GetMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public boolean deleteRow(@PathVariable("id") Integer id){
         if(!wishlistRepository.findById(id).equals(Optional.empty())) {
             wishlistRepository.deleteById(id);
