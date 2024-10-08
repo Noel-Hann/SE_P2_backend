@@ -28,7 +28,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/add")
-    public  User addUser(@RequestBody Map<String,String> body) throws Exception{
+    public User addUser(@RequestBody Map<String,String> body){
 
         String username = body.get("username");
         String password = body.get("password");
@@ -43,4 +43,13 @@ public class UserController {
 
     }
 
+//    @GetMapping("/test")
+//    public String test(){
+//        return "test";
+//    }
+
+    @GetMapping("/get-all")
+    public List<User> getAll(){
+        return userRepository.findAll();
+    }
 }
