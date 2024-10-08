@@ -1,5 +1,7 @@
 package com.jorge.whitelist.controller;
 
+import com.jorge.whitelist.models.User;
+import com.jorge.whitelist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,23 @@ import java.util.Optional;
 @RequestMapping("api/user")
 public class UserController {
 
+    @Autowired
+    private UserRepository userRepository;
 
-    
+    @PostMapping("/add")
+    public  User addUser(@RequestBody Map<String,String> body) throws Exception{
+
+        String username = body.get("username");
+        String password = body.get("password");
+
+        //we could error handle here, but that should be done in front end
+
+        User newUser = new User(username, password);
+
+        userRepository.save(newUser);
+        return newUser;
+
+
+    }
+
 }
