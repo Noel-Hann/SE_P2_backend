@@ -1,6 +1,7 @@
 package com.jorge.whitelist.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,16 +25,19 @@ public class ItemController {
     @Autowired
     ItemRepository itemRepository;
 
+    @CrossOrigin
     @GetMapping("/get-all")
     public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
 
+    @CrossOrigin
     @GetMapping("/get/{id}")
     public Optional<Item> getItemById(@PathVariable("id") Integer id) {
         return itemRepository.findById(id);
     }
 
+    @CrossOrigin
     @DeleteMapping("/remove/{id}")
     public boolean deleteItem(@PathVariable("id") Integer id) {
         if(itemRepository.existsById(id)) {
@@ -43,6 +47,7 @@ public class ItemController {
         return false;
     }
 
+    @CrossOrigin
     @PutMapping("/update/{id}")
     public Item updateItem(@PathVariable("id") Integer id, @RequestBody Map<String, String> body) {
         Item currentItem = itemRepository.findById(id).orElseThrow();
@@ -56,6 +61,7 @@ public class ItemController {
         return currentItem;
     }
 
+    @CrossOrigin
     @PostMapping("/add")
     public Item createItem(@RequestBody Map<String, String> body) {
         String name = body.get("name");

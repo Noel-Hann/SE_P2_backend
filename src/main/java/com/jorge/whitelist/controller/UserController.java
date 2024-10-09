@@ -3,6 +3,7 @@ package com.jorge.whitelist.controller;
 import com.jorge.whitelist.models.User;
 import com.jorge.whitelist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @CrossOrigin
     @PostMapping("/add")
     public User addUser(@RequestBody Map<String,String> body){
 
@@ -50,6 +52,7 @@ public class UserController {
 //        return "test";
 //    }
 
+    @CrossOrigin
     @GetMapping("/get-all")
     public List<User> getAll(){
         return userRepository.findAll();
@@ -61,6 +64,7 @@ public class UserController {
         if it does, don't add the user
    */
 
+    @CrossOrigin
     @GetMapping("/get/{username}")
     public User getByUsername(@PathVariable String username){
         List<User> response = userRepository.findByUsername(username);
