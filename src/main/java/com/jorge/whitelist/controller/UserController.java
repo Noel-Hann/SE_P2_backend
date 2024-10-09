@@ -33,8 +33,10 @@ public class UserController {
         String username = body.get("username");
         String password = body.get("password");
 
-        //we could error handle here, but that should be done in front end
-
+        //if the username already exists, we don't want to make a new user with the same username
+        if (getByUsername(username) != null) {
+            return null;
+        }
         User newUser = new User(username, password);
 
         userRepository.save(newUser);
@@ -51,5 +53,20 @@ public class UserController {
     @GetMapping("/get-all")
     public List<User> getAll(){
         return userRepository.findAll();
+    }
+
+    /*the plan:
+        add a method to get a user by username
+        in the add function, call that function to see if that username already exists
+        if it does, don't add the user
+   */
+
+    @GetMapping("/get/{username}")
+    public User getByUsername(@PathVariable String username){
+        List<User> response = userRepository.findByUsername(username);
+        if (response.isEmpty()) {
+            return null;
+        }
+        return response.get(0);
     }
 }
