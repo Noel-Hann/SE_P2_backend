@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @PostMapping("/add")
     public User addUser(@RequestBody Map<String,String> body){
 
@@ -34,7 +34,7 @@ public class UserController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping("/get-all")
     public List<User> getAll(){
         return userRepository.findAll();
@@ -42,7 +42,7 @@ public class UserController {
 
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping("/get/{username}")
     public User getByUsername(@PathVariable String username){
         List<User> response = userRepository.findByUsername(username);
