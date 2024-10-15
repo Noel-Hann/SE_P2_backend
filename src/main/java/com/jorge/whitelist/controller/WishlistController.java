@@ -18,16 +18,19 @@ public class WishlistController {
     @Autowired
     WishlistRepository wishlistRepository;
 
+    @CrossOrigin
     @GetMapping("/get-all")
     public List<Wishlist> getAllWishlist() {
         return wishlistRepository.findAll();
     }
 
+    @CrossOrigin
     @GetMapping("get-users/{userKey}")
     public List< Wishlist> getUserWishlist(@PathVariable("userKey") Integer userKey){
         return wishlistRepository.findByUserKey(userKey);
     }
 
+    @CrossOrigin
     @DeleteMapping("/remove/{id}")
     public boolean deleteRow(@PathVariable("id") Integer id){
         if(!wishlistRepository.findById(id).equals(Optional.empty())) {
@@ -37,6 +40,7 @@ public class WishlistController {
         return false;
     }
 
+    @CrossOrigin
     @PutMapping("/update/{id}")
     public Wishlist updateWishlist(@PathVariable("id") Integer id, @RequestBody Map<String, String> body) {
         Wishlist currenWishlist = wishlistRepository.findById(id).get();
@@ -48,6 +52,7 @@ public class WishlistController {
         return currenWishlist;
     }
 
+    @CrossOrigin
     @PostMapping("/add")
     public Wishlist createWishlist(@RequestBody Map<String, String> body) {
         String name = body.get("name");

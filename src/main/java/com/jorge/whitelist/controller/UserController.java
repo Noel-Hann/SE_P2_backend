@@ -41,7 +41,6 @@ public class UserController {
     }
 
 
-
     @CrossOrigin
     @GetMapping("/get/{username}")
     public User getByUsername(@PathVariable String username){

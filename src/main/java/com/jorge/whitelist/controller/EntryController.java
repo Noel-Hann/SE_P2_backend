@@ -25,6 +25,12 @@ public class EntryController {
     }
 
     @CrossOrigin
+    @RequestMapping("/get-all/{wishlistNum}") 
+    public List<Entry> findByWishList(@PathVariable("wishlistNum") int wishlistNum) {
+        return entryRepository.findByWishlistNum(wishlistNum);
+    }
+
+    @CrossOrigin
     @RequestMapping("/get/{id}")
     public Optional<Entry> getEntryById(@PathVariable("id") Integer id){
         return entryRepository.findById(id);
