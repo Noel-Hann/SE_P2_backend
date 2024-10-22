@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whitelist API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+        }
+        main {
+            padding: 1em;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5em;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f4f4f4;
+            margin: 0.5em 0;
+            padding: 1em;
+            border-left: 5px solid #333;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        @media (max-width: 600px) {
+            li {
+                padding: 0.5em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Whitelist API Documentation</h1>
+    </header>
+    <main>
+        <p>Welcome to the Whitelist API. This API allows you to manage users, items, wishlists, entries, and friends.</p>
+        <p>Attach Endpoints to end of current link ot get started</p>
+        <h2>Available Endpoints</h2>
+
+        <h3>User Endpoints</h3>
+        <ul>
+            <li>
+                <strong>GET /api/user/get-all</strong>
+                <br>Fetches all users.
+            </li>
+            <li>
+                <strong>GET /api/user/get/{username}</strong>
+                <br>Fetches user by username.
+            </li>
+            <li>
+                <strong>POST /api/user/add</strong>
+                <br>Adds a new user. Requires 'username' and 'password' in the request body.
+            </li>
+        </ul>
+
+        <h3>Item Endpoints</h3>
+        <ul>
+            <li>
+                <strong>GET /api/item/get-all</strong>
+                <br>Fetches all items.
+            </li>
+            <li>
+                <strong>GET /api/item/get/{id}</strong>
+                <br>Fetches an item by its ID.
+            </li>
+            <li>
+                <strong>POST /api/item/add</strong>
+                <br>Adds a new item. Requires 'name', 'price', 'shortDescription', and 'type' in the request body.
+            </li>
+            <li>
+                <strong>PUT /api/item/update/{id}</strong>
+                <br>Updates an item by its ID. Requires 'name', 'price', 'shortDescription', and 'type' in the request body.
+            </li>
+            <li>
+                <strong>DELETE /api/item/remove/{id}</strong>
+                <br>Removes an item by its ID.
+            </li>
+        </ul>
+
+        <h3>Entry Endpoints</h3>
+        <ul>
+            <li>
+                <strong>GET /api/entry/get-all</strong>
+                <br>Returns all entries.
+            </li>
+            <li>
+                <strong>GET /api/entry/get-all/{wishlistNum}</strong>
+                <br>Returns entries for a specific wishlist by its number.
+            </li>
+            <li>
+                <strong>GET /api/entry/get/{id}</strong>
+                <br>Fetches a specific entry by its ID.
+            </li>
+            <li>
+                <strong>POST /api/entry/add</strong>
+                <br>Adds a new entry. Requires 'itemId' and 'wishlistNum' in the request body.
+            </li>
+            <li>
+                <strong>DELETE /api/entry/remove/{id}</strong>
+                <br>Deletes an entry by its ID.
+            </li>
+        </ul>
+
+        <h3>Wishlist Endpoints</h3>
+        <ul>
+            <li>
+                <strong>GET /api/wishlist/get-all</strong>
+                <br>Fetches all wishlists.
+            </li>
+            <li>
+                <strong>GET /api/wishlist/get-users/{userKey}</strong>
+                <br>Returns wishlists associated with a particular user.
+            </li>
+           
