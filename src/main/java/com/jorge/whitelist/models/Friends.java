@@ -14,6 +14,8 @@ public class Friends {
         this.friendOneId = friendOneId;
         this.friendTwoId = friendTwoId;
     }
+
+
     public Friends(){};
 
     @Id @GeneratedValue
