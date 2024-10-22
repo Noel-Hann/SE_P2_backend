@@ -3,7 +3,6 @@ package com.jorge.whitelist.controller;
 import com.jorge.whitelist.models.Friends;
 import com.jorge.whitelist.repository.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,8 +45,8 @@ public class FriendController {
     }
 
     @CrossOrigin
-    @GetMapping("/get")
-    public Friends getSpecificFriends(@RequestBody Map<String,Integer> body) {
+    @GetMapping ("/get")
+    public Friends getFriend(@RequestBody Map<String,Integer> body) {
         int Id1 = body.get("Id1");
         int Id2 = body.get("Id2");
         Friends friend = friendRepository.findByFriendOneIdAndFriendTwoId(Id1,Id2).get(0);
@@ -56,7 +55,6 @@ public class FriendController {
 
     @CrossOrigin
     @DeleteMapping("/remove")
-    @Transactional
     public void removeFriend(@RequestBody Map<String,Integer> body) {
         int Id1 = body.get("Id1");
         int Id2 = body.get("Id2");
@@ -70,5 +68,6 @@ public class FriendController {
         friendRepository.deleteById(friend.getFriendsId());
 
     }
+
 
 }
