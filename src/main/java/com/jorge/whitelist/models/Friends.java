@@ -31,5 +31,7 @@ public class Friends {
         return friendOneId;
     }
 
+    public int getFriendsId() {return friendsId;}
+
 
 }
