@@ -44,5 +44,30 @@ public class FriendController {
         return friend;
     }
 
+    @CrossOrigin
+    @GetMapping ("/get")
+    public Friends getFriend(@RequestBody Map<String,Integer> body) {
+        int Id1 = body.get("Id1");
+        int Id2 = body.get("Id2");
+        Friends friend = friendRepository.findByFriendOneIdAndFriendTwoId(Id1,Id2).get(0);
+        return friend;
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/remove")
+    public void removeFriend(@RequestBody Map<String,Integer> body) {
+        int Id1 = body.get("Id1");
+        int Id2 = body.get("Id2");
+
+        //delete first version
+        Friends friend = friendRepository.findByFriendOneIdAndFriendTwoId(Id1,Id2).get(0);
+        friendRepository.deleteById(friend.getFriendsId());
+
+        //delete second version
+        friend = friendRepository.findByFriendOneIdAndFriendTwoId(Id2,Id1).get(0);
+        friendRepository.deleteById(friend.getFriendsId());
+
+    }
+
 
 }
