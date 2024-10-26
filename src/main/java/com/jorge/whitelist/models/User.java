@@ -6,36 +6,33 @@ import jakarta.persistence.*;
 @Table(name = "User")
 public class User {
 
-    public int getId() {
-        return id;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //private int id;
     private String username;
     private String password;
-
-    public User( String username, String password) {
-
-        this.username = username;
-        this.password = password;
-    }
-
-
-    public User(int id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
-
-
+    private boolean isAdmin;
 
     public User() {
     }
 
+    public User( String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.isAdmin = false;
+    }
+
+    public User(int id, String username, String password, boolean isAdmin) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.isAdmin = isAdmin;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getPassword() {
         return password;
@@ -53,5 +50,11 @@ public class User {
         this.username = username;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 
+    public void setAdmin(boolean isAdmin){
+        this.isAdmin = isAdmin;
+    }
 }
